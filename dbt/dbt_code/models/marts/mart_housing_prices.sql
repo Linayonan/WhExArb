@@ -1,22 +1,28 @@
 WITH fct_housingprices AS (SELECT * FROM {{ ref('fct_housingprices') }}),
 
-region AS (SELECT * FROM {{ ref('dim_region') }}),
+region AS (SELECT region_key, region AS Region FROM {{ ref('dim_region') }}),
 
-year AS (SELECT * FROM {{ ref('dim_year') }}),
+year AS (SELECT year_key, year AS Year FROM {{ ref('dim_year') }}),
 
-pricing AS (SELECT * FROM {{ ref('dim_pricing') }})
+pricing AS (SELECT id,
+        Apartment_Area,
+        Land_Price,
+        Building_Price
+    FROM {{ ref('dim_pricing') }})
+
 
 SELECT
-    r.region,
-    y.year,
+    r.Region,
+    y.Year,
     p.Apartment_Area,
     p.Land_Price,
-    p.Building_price
+    p.Building_Price
 
 FROM fct_housingprices AS f
-JOIN region AS r
-   ON r.region = f.region.
-JOIN year AS y
-    ON y.year = f.year
-JOIN pricing AS p
+LEFT JOIN region AS r
+    ON r.region_key = f.region_key
+LEFT JOIN year AS y
+    ON y.year_key = f.year_key
+LEFT JOIN pricing AS p
     ON p.id = f.id
+

@@ -9,3 +9,24 @@ models:
       - name: region
         data_tests:
           - not_null
+  
+  - name: dim_year
+    columns:
+      - name: year_key
+        data_tests:
+          - not_null
+          - unique
+
+  - name: dim_pricing
+    columns:
+      - name: Land_Price
+        data_tests:
+          - not_null
+
+  - name: fct_housingprices
+    columns:
+      - name: region_key
+        data_tests:
+          - relationships:
+              to: ref('dim_region')
+              field: id
