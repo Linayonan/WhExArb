@@ -25,4 +25,3 @@ LEFT JOIN year AS y
     ON y.year_key = f.year_key
 LEFT JOIN pricing AS p
     ON p.id = f.id
-
