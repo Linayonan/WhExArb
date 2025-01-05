@@ -1,1 +1,0 @@
-dlt[snowflake]>=1.5.0

@@ -19,4 +19,4 @@ def query_housing_prices(query= 'select * from mart_housing_prices'):
         df = pd.read_sql(query, conn)
 
         return df
-print(query_housing_prices)   
+

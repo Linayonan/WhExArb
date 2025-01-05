@@ -3,8 +3,6 @@ import pandas as pd
 from pathlib import Path
 import os
 
-
-
 def run_pipeline(csv_file_path, table_name):
     pipeline = dlt.pipeline(
         pipeline_name="Housingprices_pipeline",
